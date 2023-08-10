@@ -23,8 +23,8 @@ function App() {
 
   return (
     <div className="bg-[#fafbff] flex justify-center items-center h-screen">
-      <div className="flex bg-[#ffffff] items-center gap-4 w-[65%] rounded-xl">
-        <div className="m-4 bg-[url('/src/assets/images/bg-sidebar-desktop.svg')] h-[600px] bg-no-repeat w-2/4">
+      <div className="flex bg-[#ffffff]items-center gap-10 w-[65%] max-w-7xl rounded-xl">
+        <div className="m-4 bg-[url('/src/assets/images/bg-sidebar-desktop.svg')] h-[600px] bg-no-repeat w-1/4">
           <div className="imgwrapper flex flex-col gap-6 p-8">
             <div className="flex gap-2 items-center">
               <div className="">
@@ -91,6 +91,7 @@ function App() {
           </div>
           <div>{currentStep}</div>
         </div>
+
         <div className="mr-20 w-3/4">
           {currentStep === 1 && <Stepone />}
           {currentStep === 2 && <Steptwo />}
