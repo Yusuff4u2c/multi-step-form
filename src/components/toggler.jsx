@@ -10,21 +10,23 @@ const ToggleButton = () => {
   return (
     <div className="flex items-center">
       <span className="mr-2 font-bold text-[#02295a]">Monthly</span>
-      <div className="relative">
+      <div className="relatives">
         <input
           type="checkbox"
-          id="toggle"
+          id="is_yearly"
           className="hidden"
           checked={isChecked}
           onChange={toggleHandler}
         />
         <label
-          htmlFor="toggle"
-          className="toggle-label bg-[#02295a] w-12 h-6 rounded-full flex items-center cursor-pointer"
+          htmlFor="is_yearly"
+          className={` ${
+            isChecked ? "bg-[#02295a]" : "bg-[#797979]"
+          }  w-12 h-6 p-1 rounded-full flex items-center cursor-pointer transition-colors`}
         >
           <span
-            className={`toggle-handle bg-white w-4 h-4 rounded-full shadow-md transform transition-transform ${
-              isChecked ? "translate-x-full" : ""
+            className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform ${
+              isChecked ? "translate-x-[150%]" : ""
             }`}
           ></span>
         </label>

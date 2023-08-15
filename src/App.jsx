@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./App.css";
-import Stepone from "/src/step-one";
-import Steptwo from "/src/step-two";
-import Stepthree from "/src/step-three";
+import Stepone from "./step-one";
+import Steptwo from "./step-two";
+import Stepthree from "./step-three";
 import Stepper from "./components/stepper";
 
 function App() {
@@ -24,7 +24,8 @@ function App() {
 
   return (
     <div className="bg-[#bfe2fd] flex justify-center items-center h-screen">
-      <div className="flex flex-col lg:flex-row items-center lg:items-start bg-white gap-10 w-full lg:w-[85%] xl:w-[65%] max-w-5xl rounded-xl h-screen lg:h-fit lg:min-h-[650px] py-0 lg:py-4 lg:px-4">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start bg-white gap-10 w-full lg:w-[85%] xl:w-[65%] max-w-5xl rounded-xl h-screen lg:h-[600px] py-0 lg:py-4 lg:px-4">
+        {/* left box */}
         <div className="h-[30%] lg:h-full w-full  lg:w-2/6 relative">
           {/* background image container */}
           <div className="w-full h-full lg:rounded-xl overflow-hidden">
@@ -63,7 +64,8 @@ function App() {
           </div>
         </div>
 
-        <div className="flex flex-col lg:bg-transparents h-fit lg:h-full lg:mr-20 w-[90%] rounded-xl px-6 lg:px-0 py-10 lg:pt-0 -mt-28 lg:mt-0 z-10 lg:w-4/6 bg-white">
+        {/* right box */}
+        <div className="flex flex-col lg:bg-transparents h-fit lg:h-full lg:mr-20 w-[90%] rounded-xl px-6 lg:px-0 py-10 lg:py-0 lg:pt-0 -mt-28 lg:mt-0 z-10 lg:w-4/6 bg-white">
           <div className="flex-grow">
             {currentStep === 1 && <Stepone />}
             {currentStep === 2 && <Steptwo />}
