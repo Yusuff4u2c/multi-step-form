@@ -4,9 +4,11 @@ import Stepone from "./step-one";
 import Steptwo from "./step-two";
 import Stepthree from "./step-three";
 import Stepper from "./components/stepper";
+import StepFour from "./step-four";
+import ThankYouPage from "./thank-you-page";
 
 function App() {
-  const totalSteps = 4;
+  const totalSteps = 5;
   const [currentStep, setCurrentStep] = useState(1);
   const [isError, setIsError] = useState(false);
 
@@ -70,6 +72,8 @@ function App() {
             {currentStep === 1 && <Stepone />}
             {currentStep === 2 && <Steptwo />}
             {currentStep === 3 && <Stepthree />}
+            {currentStep === 4 && <StepFour />}
+            {currentStep === 5 && <ThankYouPage />}
           </div>
 
           <div className="lg:flex justify-between hidden">
@@ -105,7 +109,9 @@ function App() {
             Go Back
           </button>
           <button
-            className={`p-4 rounded-lg text-white font-bold bg-[#02295a] ml-auto`}
+            className={`p-4 rounded-lg text-white ml-auto font-bold ${
+              currentStep === 4 ? "bg-[#473dff]" : "bg-[#02295a]"
+            }`}
             type="submit"
             onClick={handleNext}
           >
