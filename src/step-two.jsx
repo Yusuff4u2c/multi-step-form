@@ -18,7 +18,7 @@ const Steptwo = () => {
       <p className="mb-8 text-3x1 text-[#9699ab]">
         You have the option of monthly or yearly.
       </p>
-      <div className=" flex  flex-col justify-between lg:flex-row">
+      <div className=" flex  flex-col justify-between lg:flex-row gap-6">
         <PlanCard
           src={arcade}
           plan="Arcade"
