@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="bg-[#bfe2fd] flex justify-center items-center h-screen">
-      <div className="flex flex-col lg:flex-row items-center lg:items-start bg-green-100 gap-10 w-full lg:w-[85%] xl:w-[65%] max-w-5xl rounded-xl h-screen lg:h-fit lg:min-h-[650px] py-0 lg:py-4 lg:px-4">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start bg-white gap-10 w-full lg:w-[85%] xl:w-[65%] max-w-5xl rounded-xl h-screen lg:h-fit lg:min-h-[650px] py-0 lg:py-4 lg:px-4">
         <div className="h-[30%] lg:h-full w-full  lg:w-2/6 relative">
           {/* background image container */}
           <div className="w-full h-full lg:rounded-xl overflow-hidden">
@@ -81,7 +81,7 @@ function App() {
               Go Back
             </button>
             <button
-              className={`mt-10 p-4 rounded-lg text-white font-bold bg-[#02295a] `}
+              className={`mt-10 p-4 rounded-lg text-white sm-float-right font-bold bg-[#02295a] `}
               type="submit"
               onClick={handleNext}
             >

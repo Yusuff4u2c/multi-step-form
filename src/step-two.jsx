@@ -14,10 +14,10 @@ const Steptwo = () => {
       <p className="mb-8 text-3x1 text-[#9699ab]">
         You have the option of monthly or yearly.
       </p>
-      <div className=" flex justify-between">
+      <div className=" flex  flex-col justify-between lg:flex-row">
         <Card src={arcade} plan="Arcade" price="$9/mo" />
         <Card src={advanced} plan="Advanced" price="$12/mo" />
-        <Card src={check} plan="Pro" price="$15/mo" />
+        <Card src={pro} plan="Pro" price="$15/mo" />
       </div>
       <div className=" w-full flex justify-center bg-[#d6d9e6] my-8 rounded-lg p-3">
         <ToggleButton />
