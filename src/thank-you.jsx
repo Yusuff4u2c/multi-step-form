@@ -1,5 +1,5 @@
 import thanks from "./assets/images/icon-thank-you.svg";
-const ThankYouPage = () => {
+const ThankYou = () => {
   return (
     <div className="flex h-full flex-col gap-6 items-center justify-center">
       <img className="w-20" src={thanks} alt="thank you icon" />
@@ -13,4 +13,4 @@ const ThankYouPage = () => {
   );
 };
 
-export default ThankYouPage;
+export default ThankYou;
