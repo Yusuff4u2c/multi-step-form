@@ -11,9 +11,13 @@ function App() {
   const totalSteps = 4;
   const [currentStep, setCurrentStep] = useState(1);
   const [registrationComplete, setRegistrationComplete] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [canProceed, setCanProceed] = useState(false);
 
   function handleNext() {
+    // we should validate the data for the current step first
+    // if there is no error, we can proceed to the next step
+    if (!canProceed) return;
+
     if (currentStep === totalSteps) {
       setRegistrationComplete(true);
       return;
@@ -77,7 +81,7 @@ function App() {
           {!registrationComplete ? (
             <>
               <div className="flex-grow">
-                {currentStep === 1 && <Stepone />}
+                {currentStep === 1 && <Stepone onChange={setCanProceed} />}
                 {currentStep === 2 && <Steptwo />}
                 {currentStep === 3 && <Stepthree />}
                 {currentStep === 4 && <StepFour />}
