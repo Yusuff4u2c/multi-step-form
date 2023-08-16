@@ -7,7 +7,7 @@ const Addoncard = ({ data, selected = false, onChange }) => {
 
   return (
     <div
-      className={`cursor-pointer add-on-card card border  w-full rounded-xl border-gray-500 flex items-center px-6 py-4 gap-4 ${
+      className={`cursor-pointer add-on-card card border  w-full rounded-xl flex items-center px-6 py-4 gap-4 ${
         selected ? "border-[#ac54ff] bg-[#fbf8ff]" : "border-[#9699ab]"
       } hover:border-[#ac54ff]`}
       onClick={handleSelection}
