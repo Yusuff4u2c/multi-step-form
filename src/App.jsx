@@ -32,7 +32,7 @@ function App() {
 
   return (
     <div className="bg-[#bfe2fd] flex justify-center items-center h-screen">
-      <div className="flex flex-col lg:flex-row items-center lg:items-start bg-white gap-10 w-full lg:w-[85%] xl:w-[65%] max-w-5xl rounded-xl h-screen lg:h-[600px] py-0 lg:py-4 lg:px-4">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start bg-[aliceblue] lg:bg-white gap-0 lg:gap-10 w-full lg:w-[85%] xl:w-[65%] max-w-5xl rounded-xl h-screen lg:h-[600px] py-0 lg:py-4 lg:px-4">
         {/* left box */}
         <div className="h-[30%] lg:h-full w-full  lg:w-2/6 relative">
           {/* background image container */}
@@ -73,7 +73,7 @@ function App() {
         </div>
 
         {/* right box */}
-        <div className="flex flex-col lg:bg-transparents h-fit lg:h-full lg:mr-20 w-[90%] rounded-xl px-6 lg:px-0 py-10 lg:py-0 lg:pt-0 -mt-28 lg:mt-0 z-10 lg:w-4/6 bg-white">
+        <div className="flex flex-col lg:bg-transparents h-fit lg:h-full lg:mr-20 w-[90%] rounded-xl px-6 lg:px-0 py-10 lg:py-0 lg:pt-0 -mt-12 lg:mt-0 z-10 lg:w-4/6 bg-white shadow-xl lg:shadow-none">
           {!registrationComplete ? (
             <>
               <div className="flex-grow">
