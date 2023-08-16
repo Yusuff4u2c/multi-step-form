@@ -36,11 +36,13 @@ const allPlans = [
 const Steptwo = () => {
   // to store the name of the selected plan e.g. Pro, Advanced
   const [selectedPlan, setSelectedPlan] = useState();
+  const [isYearly, setIsYearly] = useState(true); // false(monthly) true(yearly)
+  const [planDuration, setPlanDuration] = useState("monthly");
 
   return (
     <div>
       <h2 className="font-bold text-4xl my-4 text-[#02295a]">
-        Select your plans
+        Select your plans [{isYearly ? "yearly" : "monthly"}] and {planDuration}
       </h2>
       <p className="mb-8 text-3x1 text-[#9699ab]">
         You have the option of monthly or yearly.
@@ -56,7 +58,16 @@ const Steptwo = () => {
         ))}
       </div>
       <div className=" w-full flex justify-center bg-[#fbf8ff] my-8 rounded-lg p-3">
-        <ToggleButton />
+        <ToggleButton
+          onChange={(value) => {
+            setIsYearly(value);
+            setPlanDuration(value ? "yearly" : "monthly");
+          }}
+          value={isYearly}
+          offLabel="Monthly"
+          onLabel="Yearly"
+          // value={planDuration === "yearly"}
+        />
       </div>
     </div>
   );

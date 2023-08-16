@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import Input from "./components/input";
 import * as Yup from "yup";

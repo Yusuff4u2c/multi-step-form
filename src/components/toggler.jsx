@@ -1,15 +1,25 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 
-const ToggleButton = () => {
-  const [isChecked, setIsChecked] = useState(false);
+const ToggleButton = ({
+  onChange,
+  value,
+  offLabel = "off",
+  onLabel = "on",
+}) => {
+  const [isChecked, setIsChecked] = useState(value);
 
   const toggleHandler = () => {
-    setIsChecked(!isChecked);
+    const newValue = !isChecked;
+    setIsChecked(newValue);
+    onChange && onChange(newValue);
   };
 
   return (
     <div className="flex items-center">
-      <span className="mr-2 font-bold text-[#02295a]">Monthly</span>
+      <span className="mr-2 font-bold text-[#02295a] capitalize">
+        {offLabel}
+      </span>
       <div className="relatives">
         <input
           type="checkbox"
@@ -31,7 +41,7 @@ const ToggleButton = () => {
           ></span>
         </label>
       </div>
-      <span className="ml-2 text-[#9699ab]">Yearly</span>
+      <span className="ml-2 text-[#9699ab] capitalize">{onLabel}</span>
     </div>
   );
 };
