@@ -62,6 +62,7 @@ const Steptwo = () => {
             plan={plan}
             selected={plan.name === selectedPlan?.name}
             onSelect={setSelectedPlan}
+            isYearly={isYearly}
           />
         ))}
       </div>

@@ -79,6 +79,12 @@ function App() {
     }
   }
 
+  function gotoStep(step) {
+    if (step > currentStep) return;
+
+    setCurrentStep(step);
+  }
+
   useEffect(() => {
     console.log("fullname is changing...", fullName);
   }, [fullName]);
@@ -101,6 +107,7 @@ function App() {
         setIsYearly,
         setSelectedAddons,
         setRegistrationComplete,
+        gotoStep,
       }}
     >
       <div className="bg-[#bfe2fd] flex justify-center items-center h-screen">

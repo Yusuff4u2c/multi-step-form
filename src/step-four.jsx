@@ -2,7 +2,7 @@ import { useContext } from "react";
 import RegisterContext from "./contexts/RegisterContext";
 
 const StepFour = () => {
-  const { selectedPlan, isYearly, selectedAddons } =
+  const { selectedPlan, isYearly, selectedAddons, gotoStep } =
     useContext(RegisterContext);
 
   const planAmount = isYearly
@@ -32,7 +32,10 @@ const StepFour = () => {
               <h1 className="font-bold text-[#02295a]">
                 {selectedPlan.name}({isYearly ? "Yearly" : "Monthly"})
               </h1>
-              <a href="" className=" underline">
+              <a
+                onClick={() => gotoStep(2)}
+                className="hover:italic underline cursor-pointer"
+              >
                 Change
               </a>
             </div>
