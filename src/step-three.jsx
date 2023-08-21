@@ -6,7 +6,7 @@ const addons = [
   {
     name: "Online Service",
     description: "Access to multiplayer games",
-    price: {
+    pricing: {
       monthly: 1,
       yearly: 10,
     },
@@ -14,7 +14,7 @@ const addons = [
   {
     name: "Larger Storage",
     description: "Extra 1TB of cloud save",
-    price: {
+    pricing: {
       monthly: 2,
       yearly: 20,
     },
@@ -22,7 +22,7 @@ const addons = [
   {
     name: "Customizable Profile",
     description: "Custom theme on your profile",
-    price: {
+    pricing: {
       monthly: 2,
       yearly: 20,
     },

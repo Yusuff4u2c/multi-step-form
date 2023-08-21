@@ -26,7 +26,7 @@ const Addoncard = ({ data, selected = false, onChange }) => {
         <p className="text-gray-500 text-sm">{data.description}</p>
       </div>
       <span className="text-purple-400 lg:text-lg">
-        ${data.price.monthly}/mo
+        ${data.pricing.monthly}/mo
       </span>
     </div>
   );
