@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
 // import checkmark from "/src/assets/images/icon-checkmark.svg";
-const Addoncard = ({ data, selected = false, onChange }) => {
+const Addoncard = ({ data, selected = false, onChange, isYearly }) => {
   const handleSelection = () => {
     onChange && onChange(data);
   };
+
+  const durationKey = isYearly ? "yearly" : "monthly";
+  const planPostfix = isYearly ? "yr" : "mo";
 
   return (
     <div
@@ -26,7 +29,7 @@ const Addoncard = ({ data, selected = false, onChange }) => {
         <p className="text-gray-500 text-sm">{data.description}</p>
       </div>
       <span className="text-purple-400 lg:text-lg">
-        ${data.pricing.monthly}/mo
+        ${data.pricing[durationKey]}/{planPostfix}
       </span>
     </div>
   );

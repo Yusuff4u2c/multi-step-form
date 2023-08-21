@@ -17,7 +17,11 @@ const ToggleButton = ({
 
   return (
     <div className="flex items-center">
-      <span className="mr-2 font-bold text-[#02295a] capitalize">
+      <span
+        className={`mr-2 font-bold ${
+          !isChecked ? "text-[#02295a]" : "text-[#9699ab]"
+        } capitalize`}
+      >
         {offLabel}
       </span>
       <div className="relatives">
@@ -41,7 +45,13 @@ const ToggleButton = ({
           ></span>
         </label>
       </div>
-      <span className="ml-2 text-[#9699ab] capitalize">{onLabel}</span>
+      <span
+        className={`ml-2 font-bold ${
+          isChecked ? "text-[#02295a]" : "text-[#9699ab]"
+        } capitalize`}
+      >
+        {onLabel}
+      </span>
     </div>
   );
 };

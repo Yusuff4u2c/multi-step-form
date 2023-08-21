@@ -30,7 +30,8 @@ const addons = [
 ];
 
 const Stepthree = () => {
-  const { selectedAddons, setSelectedAddons } = useContext(RegisterContext);
+  const { selectedAddons, setSelectedAddons, isYearly } =
+    useContext(RegisterContext);
 
   const handleChange = (data) => {
     if (selectedAddons.includes(data)) {
@@ -54,6 +55,7 @@ const Stepthree = () => {
             data={addon}
             onChange={handleChange}
             selected={selectedAddons.includes(addon)}
+            isYearly={isYearly}
           />
         ))}
       </div>
