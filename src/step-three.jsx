@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Addoncard from "./components/add-on-card";
+import RegisterContext from "./contexts/RegisterContext";
 
 const addons = [
   {
@@ -29,7 +30,7 @@ const addons = [
 ];
 
 const Stepthree = () => {
-  const [selectedAddons, setSelectedAddons] = useState([]);
+  const { selectedAddons, setSelectedAddons } = useContext(RegisterContext);
 
   const handleChange = (data) => {
     if (selectedAddons.includes(data)) {

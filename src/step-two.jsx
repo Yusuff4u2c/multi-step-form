@@ -5,7 +5,8 @@ import pro from "/src/assets/images/icon-pro.svg";
 import advanced from "/src/assets/images/icon-advanced.svg";
 // import check from "/src/assets/images/icon-checkmark.svg";
 import PlanCard from "./components/plan-card.jsx";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import RegisterContext from "./contexts/RegisterContext.js";
 
 const allPlans = [
   {
@@ -34,18 +35,14 @@ const allPlans = [
   },
 ];
 
-const Steptwo = ({ onChange }) => {
-  // to store the name of the selected plan e.g. Pro, Advanced
-  const [selectedPlan, setSelectedPlan] = useState();
-  const [isYearly, setIsYearly] = useState(true); // false(monthly) true(yearly)
-
-  useEffect(() => {
-    onChange && onChange(false);
-  }, []);
-
-  useEffect(() => {
-    onChange && onChange(true);
-  }, [selectedPlan, isYearly]);
+const Steptwo = () => {
+  const {
+    selectedPlan,
+    isYearly,
+    setIsYearly,
+    setSelectedPlan,
+    validationErrors,
+  } = useContext(RegisterContext);
 
   return (
     <div>
@@ -55,6 +52,9 @@ const Steptwo = ({ onChange }) => {
       <p className="mb-8 text-3x1 text-[#9699ab]">
         You have the option of monthly or yearly.
       </p>
+      {validationErrors?.selectedPlan && (
+        <p className="text-sm text-red-500">{validationErrors.selectedPlan}</p>
+      )}
       <div className=" flex  flex-col justify-between lg:flex-row gap-6">
         {allPlans.map((plan) => (
           <PlanCard

@@ -56,8 +56,10 @@ function App() {
       if (!selectedPlan) {
         setValidationErrors({ selectedPlan: "You must select a plan" });
         return;
-      }
+      } else setValidationErrors(undefined);
     } else if (currentStep === 3) {
+      // needs no validation
+      // all states here are optional
     } else if (currentStep === 4) {
     }
 
