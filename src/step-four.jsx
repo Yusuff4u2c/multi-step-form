@@ -10,6 +10,15 @@ const StepFour = () => {
     : selectedPlan.pricing.monthly;
   const planPostfix = isYearly ? "yr" : "mo";
 
+  // plan + addons
+  const durationKey = isYearly ? "yearly" : "monthly";
+  const total =
+    planAmount +
+    selectedAddons.reduce(
+      (subTotal, addon) => (subTotal += addon.pricing[durationKey]),
+      0
+    );
+
   return (
     <div>
       <h2 className="font-bold text-4xl my-4 text-[#02295a]">Finishing up</h2>
@@ -45,9 +54,13 @@ const StepFour = () => {
         </div>
       </div>
       <div className="flex justify-between p-8">
-        <p className=" text-[#9699ab]">Total (per month)</p>
+        <p className=" text-[#9699ab]">
+          Total (per {isYearly ? "annum" : "month"})
+        </p>
 
-        <h1 className="font-bold text-[#473dff]">+$12/{planPostfix}</h1>
+        <h1 className="font-bold text-[#473dff]">
+          ${total}/{planPostfix}
+        </h1>
       </div>
     </div>
   );
