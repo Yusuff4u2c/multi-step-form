@@ -8,6 +8,7 @@ import StepFour from "./step-four";
 import ThankYouPage from "./thank-you";
 import * as Yup from "yup";
 import RegisterContext from "./contexts/RegisterContext";
+import { FaSpinner } from "react-icons/fa";
 
 const personalInfoSchema = Yup.object().shape({
   full_name: Yup.string().min(5, "not long enough").required(),
@@ -19,6 +20,7 @@ function App() {
   const totalSteps = 4;
   const [currentStep, setCurrentStep] = useState(1);
   const [registrationComplete, setRegistrationComplete] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // validation
   const [validationErrors, setValidationErrors] = useState({});
@@ -31,6 +33,19 @@ function App() {
   const [isYearly, setIsYearly] = useState(false);
   // step 3
   const [selectedAddons, setSelectedAddons] = useState([]);
+
+  const sendInfoToBackend = () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const value = Math.random();
+        value < 0.5
+          ? resolve("Successful")
+          : reject(
+              "Could not connect to the backend service. Please try again"
+            );
+      }, 5000); // 5000 milliseconds = 5 seconds
+    });
+  };
 
   async function handleNext() {
     // we should validate the data for the current step first
@@ -61,10 +76,21 @@ function App() {
       // needs no validation
       // all states here are optional
     } else if (currentStep === 4) {
+      // not doing any validation
+      // its just for confirmation
     }
 
     if (currentStep === totalSteps) {
-      setRegistrationComplete(true);
+      setLoading(true);
+      // sending request to server
+      try {
+        await sendInfoToBackend();
+        setRegistrationComplete(true);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
       return;
     }
 
@@ -173,12 +199,18 @@ function App() {
                     Go Back
                   </button>
                   <button
-                    className={`mt-10 p-4 rounded-lg text-white sm-float-right font-bold ${
-                      currentStep === 4 ? "bg-[#473dff]" : "bg-[#02295a]"
-                    }`}
+                    className={`mt-10 p-4 rounded-lg text-white sm-float-right font-bold flex gap-4 ${
+                      currentStep === 4
+                        ? "bg-[#473dff] disabled:bg-[#473dff]/40"
+                        : "bg-[#02295a] disabled:bg-[#02295a]/40"
+                    } disabled:cursor-not-allowed cursor-pointer`}
                     type="submit"
-                    onClick={handleNext}
+                    disabled={loading}
+                    onClick={() => {
+                      handleNext();
+                    }}
                   >
+                    {loading && <FaSpinner className="w-6 h-6 animate-spin" />}
                     {currentStep === 4 ? "Confirm" : "Next Step"}
                   </button>
                 </div>
@@ -208,6 +240,7 @@ function App() {
                 type="submit"
                 onClick={handleNext}
               >
+                <FaSpinner className="w-6 h-6" />
                 {currentStep === 4 ? "Confirm" : "Next Step"}
               </button>
             </div>
