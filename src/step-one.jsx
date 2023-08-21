@@ -1,45 +1,18 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useContext } from "react";
 import Input from "./components/input";
-import * as Yup from "yup";
+import RegisterContext from "./contexts/RegisterContext";
 
-const personalInfoSchema = Yup.object().shape({
-  full_name: Yup.string().min(5, "not long enough").required(),
-  email: Yup.string().email().required(),
-  phonenumber: Yup.string().min(11).required(),
-});
-
-const Stepone = ({ onChange }) => {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phonenumber, setPhonenumber] = useState("");
-  const [validationErrors, setValidationErrors] = useState();
-
-  const handleSubmission = async () => {
-    const userResponse = {
-      full_name: fullName,
-      email,
-      phonenumber,
-    };
-
-    try {
-      await personalInfoSchema.validate(userResponse, {
-        abortEarly: false,
-      });
-
-      setValidationErrors(undefined);
-      onChange && onChange(true);
-    } catch (error) {
-      const validationErrors = {};
-
-      error.inner.forEach((validationError) => {
-        validationErrors[validationError.path] = validationError.message;
-      });
-
-      setValidationErrors(validationErrors);
-      onChange && onChange(false);
-    }
-  };
+const Stepone = () => {
+  const {
+    fullName,
+    email,
+    phonenumber,
+    validationErrors,
+    setFullName,
+    setEmail,
+    setPhonenumber,
+  } = useContext(RegisterContext);
 
   return (
     <div>
@@ -67,7 +40,6 @@ const Stepone = ({ onChange }) => {
             placeholder={"Full Name"}
             value={fullName}
             onChange={(e) => setFullName(e.currentTarget.value)}
-            onKeyUp={handleSubmission}
             error={validationErrors?.full_name ?? undefined}
           />
         </div>
@@ -89,7 +61,6 @@ const Stepone = ({ onChange }) => {
             placeholder={"Email Address"}
             value={email}
             onChange={(e) => setEmail(e.currentTarget.value)}
-            onKeyUp={handleSubmission}
             error={validationErrors?.email ?? undefined}
           />
         </div>
@@ -112,7 +83,6 @@ const Stepone = ({ onChange }) => {
             placeholder={"Phone Number"}
             value={phonenumber}
             onChange={(e) => setPhonenumber(e.currentTarget.value)}
-            onKeyUp={handleSubmission}
             error={validationErrors?.phonenumber ?? undefined}
           />
         </div>

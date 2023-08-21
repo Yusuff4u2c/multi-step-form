@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const Stepper = ({ stepIndex, currentStep, title }) => {
   return (
     <div className="flex gap-2 items-center">
