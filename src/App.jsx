@@ -9,6 +9,7 @@ import ThankYouPage from "./thank-you";
 import * as Yup from "yup";
 import RegisterContext from "./contexts/RegisterContext";
 import { FaSpinner } from "react-icons/fa";
+import { Toaster, toast } from "react-hot-toast";
 
 const personalInfoSchema = Yup.object().shape({
   full_name: Yup.string().min(5, "not long enough").required(),
@@ -86,8 +87,9 @@ function App() {
       try {
         await sendInfoToBackend();
         setRegistrationComplete(true);
+        toast.success("Registration complete");
       } catch (error) {
-        console.log(error);
+        toast.error(error);
       } finally {
         setLoading(false);
       }
@@ -246,6 +248,7 @@ function App() {
             </div>
           )}
         </div>
+        <Toaster />
       </div>
     </RegisterContext.Provider>
   );
