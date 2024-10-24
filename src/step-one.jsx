@@ -1,18 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useContext } from "react";
+import { forwardRef, useContext } from "react";
 import Input from "./components/input";
 import RegisterContext from "./contexts/RegisterContext";
+import { ref } from "yup";
 
-const Stepone = () => {
-  const {
-    fullName,
-    email,
-    phonenumber,
-    validationErrors,
-    setFullName,
-    setEmail,
-    setPhonenumber,
-  } = useContext(RegisterContext);
+const Stepone = forwardRef((_, ref) => {
+  const { validationErrors } = useContext(RegisterContext);
+  const { fullName, email, phonenumber } = ref;
 
   return (
     <div>
@@ -37,9 +31,8 @@ const Stepone = () => {
           <Input
             id="full_name"
             name="full_name"
-            placeholder={"Full Name"}
-            value={fullName}
-            onChange={(e) => setFullName(e.currentTarget.value)}
+            placeholder="Full Name"
+            ref={fullName}
             error={validationErrors?.full_name ?? undefined}
           />
         </div>
@@ -58,9 +51,8 @@ const Stepone = () => {
           <Input
             id="email"
             name="email"
-            placeholder={"Email Address"}
-            value={email}
-            onChange={(e) => setEmail(e.currentTarget.value)}
+            placeholder="Email Address"
+            ref={email}
             error={validationErrors?.email ?? undefined}
           />
         </div>
@@ -80,15 +72,13 @@ const Stepone = () => {
           <Input
             id="phone_number"
             name="phone_number"
-            placeholder={"Phone Number"}
-            value={phonenumber}
-            onChange={(e) => setPhonenumber(e.currentTarget.value)}
+            placeholder="Phone Number"
+            ref={phonenumber}
             error={validationErrors?.phonenumber ?? undefined}
           />
         </div>
       </div>
     </div>
   );
-};
-
+});
 export default Stepone;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Stepone from "./step-one";
 import Steptwo from "./step-two";
@@ -26,9 +26,9 @@ function App() {
   // validation
   const [validationErrors, setValidationErrors] = useState({});
   // step 1
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phonenumber, setPhonenumber] = useState("");
+  const fullName = useRef(null);
+  const email = useRef(null);
+  const phonenumber = useRef(null);
   // step 2
   const [selectedPlan, setSelectedPlan] = useState();
   const [isYearly, setIsYearly] = useState(false);
@@ -51,16 +51,23 @@ function App() {
   async function handleNext() {
     // we should validate the data for the current step first
     // if there is no error, we can proceed to the next step
+
     if (currentStep === 1) {
       try {
         await personalInfoSchema.validate(
-          { full_name: fullName, email, phonenumber },
+          {
+            full_name: fullName.current.value,
+            email: email.current.value,
+            phonenumber: phonenumber.current.value,
+          },
           {
             abortEarly: false,
           }
         );
         setValidationErrors(undefined);
       } catch (error) {
+        console.log("error:", error);
+
         const validationErrors = {};
         error.inner.forEach((validationError) => {
           validationErrors[validationError.path] = validationError.message;
@@ -121,16 +128,10 @@ function App() {
     <RegisterContext.Provider
       value={{
         validationErrors,
-        fullName,
-        email,
-        phonenumber,
         selectedPlan,
         isYearly,
         selectedAddons,
         registrationComplete,
-        setFullName,
-        setEmail,
-        setPhonenumber,
         setSelectedPlan,
         setIsYearly,
         setSelectedAddons,
@@ -138,8 +139,8 @@ function App() {
         gotoStep,
       }}
     >
-      <div className="bg-[#bfe2fd] flex justify-center items-center h-screen">
-        <div className="flex flex-col lg:flex-row items-center lg:items-start bg-[aliceblue] lg:bg-white gap-0 lg:gap-10 w-full lg:w-[85%] xl:w-[65%] max-w-5xl rounded-xl h-screen lg:h-[650px] py-0 lg:py-4 lg:px-4">
+      <div className="bg-[#bfe2fd] flex justify-center items-center py-4">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start bg-[aliceblue] lg:bg-white gap-0 lg:gap-10 w-full lg:w-[85%] xl:w-[65%] max-w-5xl rounded-xl h-screen lg:h-[550px] py-0 lg:py-4 lg:px-4">
           {/* left box */}
           <div className="h-[30%] lg:h-full w-full  lg:w-2/6 relative">
             {/* background image container */}
@@ -184,7 +185,9 @@ function App() {
             {!registrationComplete ? (
               <>
                 <div className="flex-grow">
-                  {currentStep === 1 && <Stepone />}
+                  {currentStep === 1 && (
+                    <Stepone ref={{ fullName, email, phonenumber }} />
+                  )}
                   {currentStep === 2 && <Steptwo />}
                   {currentStep === 3 && <Stepthree />}
                   {currentStep === 4 && <StepFour />}
@@ -242,7 +245,7 @@ function App() {
                 type="submit"
                 onClick={handleNext}
               >
-                <FaSpinner className="w-6 h-6" />
+                {/* <FaSpinner className="w-6 h-6" /> */}
                 {currentStep === 4 ? "Confirm" : "Next Step"}
               </button>
             </div>
