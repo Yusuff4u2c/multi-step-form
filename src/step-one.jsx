@@ -2,7 +2,6 @@
 import { forwardRef, useContext } from "react";
 import Input from "./components/input";
 import RegisterContext from "./contexts/RegisterContext";
-import { ref } from "yup";
 
 const Stepone = forwardRef((_, ref) => {
   const { validationErrors } = useContext(RegisterContext);

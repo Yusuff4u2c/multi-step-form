@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import "./App.css";
+
 import Stepone from "./step-one";
 import Steptwo from "./step-two";
 import Stepthree from "./step-three";
@@ -22,6 +22,13 @@ function App() {
   const [currentStep, setCurrentStep] = useState(1);
   const [registrationComplete, setRegistrationComplete] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const steps = [
+    { stepIndex: 1, title: "Your Info" },
+    { stepIndex: 2, title: "Select Plan" },
+    { stepIndex: 3, title: "Add-ons" },
+    { stepIndex: 4, title: "Summary" },
+  ];
 
   // validation
   const [validationErrors, setValidationErrors] = useState({});
@@ -66,8 +73,6 @@ function App() {
         );
         setValidationErrors(undefined);
       } catch (error) {
-        console.log("error:", error);
-
         const validationErrors = {};
         error.inner.forEach((validationError) => {
           validationErrors[validationError.path] = validationError.message;
@@ -81,16 +86,12 @@ function App() {
         return;
       } else setValidationErrors(undefined);
     } else if (currentStep === 3) {
-      // needs no validation
-      // all states here are optional
     } else if (currentStep === 4) {
-      // not doing any validation
-      // its just for confirmation
     }
 
     if (currentStep === totalSteps) {
       setLoading(true);
-      // sending request to server
+
       try {
         await sendInfoToBackend();
         setRegistrationComplete(true);
@@ -146,37 +147,25 @@ function App() {
             {/* background image container */}
             <div className="w-full h-full lg:rounded-xl overflow-hidden">
               <img
-                src="/src/assets/images/bg-sidebar-desktop.svg"
+                src="images/bg-sidebar-desktop.svg"
                 className="hidden lg:block object-cover w-full h-full"
               />
               <img
-                src="/src/assets/images/bg-sidebar-mobile.svg"
+                src="/images/bg-sidebar-mobile.svg"
                 className="object-cover w-full h-full lg:hidden"
               />
             </div>
 
             {/* steps wrapper */}
             <div className="flex lg:flex-col justify-center gap-6 p-8 absolute top-0 w-full">
-              <Stepper
-                stepIndex={1}
-                currentStep={currentStep}
-                title={"Your Info"}
-              />
-              <Stepper
-                stepIndex={2}
-                currentStep={currentStep}
-                title={"Select Plan"}
-              />
-              <Stepper
-                stepIndex={3}
-                currentStep={currentStep}
-                title={"Add-ons"}
-              />
-              <Stepper
-                stepIndex={4}
-                currentStep={currentStep}
-                title={"Summary"}
-              />
+              {steps.map(({ stepIndex, title }) => (
+                <Stepper
+                  key={stepIndex}
+                  stepIndex={stepIndex}
+                  currentStep={currentStep}
+                  title={title}
+                />
+              ))}
             </div>
           </div>
 
